@@ -1,0 +1,625 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alex Morgan | Portfolio</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --green: #198754;
+      --dark: #123b2a;
+      --light: #f2f8f3;
+      --white: #ffffff;
+      --gray: #64756a;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: var(--white);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    /* Navbar */
+    header {
+      background: white;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px #0000000d;
+    }
+
+    nav {
+      height: 75px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 27px;
+      font-weight: bold;
+      color: var(--green);
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+    }
+
+    .nav-links a:hover {
+      color: var(--green);
+    }
+
+    .menu-btn {
+      display: none;
+      border: none;
+      background: none;
+      font-size: 28px;
+      cursor: pointer;
+      color: var(--green);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-block;
+      background: var(--green);
+      color: white;
+      padding: 12px 25px;
+      border-radius: 6px;
+      font-weight: bold;
+      transition: .3s;
+      border: 2px solid var(--green);
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: transparent;
+      color: var(--green);
+    }
+
+    /* Hero */
+    .hero {
+      background: var(--light);
+      padding: 100px 0;
+    }
+
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      align-items: center;
+      gap: 50px;
+    }
+
+    .hero h1 {
+      font-size: clamp(36px, 5vw, 55px);
+      line-height: 1.2;
+      margin: 15px 0;
+    }
+
+    .hero h1 span {
+      color: var(--green);
+    }
+
+    .hero p {
+      color: var(--gray);
+      margin-bottom: 25px;
+      max-width: 500px;
+    }
+
+    .hero-img {
+      width: 100%;
+      max-width: 350px;
+      height: 400px;
+      object-fit: cover;
+      border-radius: 20px;
+      justify-self: center;
+      border: 7px solid white;
+    }
+
+    .tag {
+      color: var(--green);
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-size: 13px;
+    }
+
+    /* General sections */
+    section {
+      padding: 85px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 34px;
+      margin-bottom: 12px;
+    }
+
+    .section-title span {
+      color: var(--green);
+    }
+
+    .section-desc {
+      text-align: center;
+      color: var(--gray);
+      margin-bottom: 45px;
+    }
+
+    /* About */
+    .about-content {
+      max-width: 750px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .about-content p {
+      color: var(--gray);
+      margin: 20px 0;
+    }
+
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 50px;
+      margin-top: 35px;
+    }
+
+    .stat h3 {
+      color: var(--green);
+      font-size: 30px;
+    }
+
+    .stat p {
+      margin: 0;
+      font-size: 14px;
+    }
+
+    /* Skills */
+    .skills {
+      background: var(--light);
+    }
+
+    .skill-list {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .skill {
+      background: white;
+      padding: 15px 25px;
+      border-radius: 8px;
+      color: var(--green);
+      font-weight: bold;
+      box-shadow: 0 3px 12px #00000008;
+    }
+
+    /* Projects */
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .project-card {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 5px 20px #00000010;
+      transition: .3s;
+      background: white;
+    }
+
+    .project-card:hover {
+      transform: translateY(-7px);
+    }
+
+    .project-card img {
+      width: 100%;
+      height: 210px;
+      object-fit: cover;
+    }
+
+    .project-info {
+      padding: 22px;
+    }
+
+    .project-info h3 {
+      margin-bottom: 10px;
+    }
+
+    .project-info p {
+      color: var(--gray);
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+
+    .project-info a {
+      color: var(--green);
+      font-weight: bold;
+    }
+
+    /* Contact */
+    .contact {
+      background: var(--light);
+    }
+
+    .contact-form {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 35px;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px #00000008;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 14px;
+      margin-bottom: 18px;
+      border: 1px solid #dce6dd;
+      border-radius: 6px;
+      font: inherit;
+      outline: none;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: var(--green);
+    }
+
+    .contact-form textarea {
+      resize: vertical;
+      min-height: 140px;
+    }
+
+    .contact-form button {
+      width: 100%;
+      font-size: 16px;
+    }
+
+    #formMessage {
+      margin-top: 15px;
+      color: var(--green);
+      text-align: center;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--dark);
+      color: white;
+      padding: 25px 0;
+      text-align: center;
+    }
+
+    footer p {
+      font-size: 14px;
+      color: #d0e0d5;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .menu-btn {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 75px;
+        left: 0;
+        width: 100%;
+        background: white;
+        flex-direction: column;
+        text-align: center;
+        padding: 25px;
+        gap: 20px;
+        box-shadow: 0 5px 10px #00000010;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .hero {
+        padding: 65px 0;
+      }
+
+      .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero p {
+        margin: 20px auto;
+      }
+
+      .hero-img {
+        height: 320px;
+        max-width: 280px;
+      }
+
+      .project-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats {
+        gap: 25px;
+      }
+
+      section {
+        padding: 65px 0;
+      }
+
+      .contact-form {
+        padding: 22px;
+      }
+    }
+
+    @media (min-width: 500px) and (max-width: 768px) {
+      .project-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <header>
+    <div class="container">
+      <nav>
+        <a href="#home" class="logo">Alex.</a>
+
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+
+        <button class="menu-btn" id="menuBtn"
+          aria-label="Toggle navigation"
+          aria-expanded="false">☰</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <div class="container hero-content">
+
+      <div>
+        <span class="tag">Welcome to my portfolio</span>
+
+        <h1>
+          Hi, I'm Alex <span>Morgan</span>
+        </h1>
+
+        <h2>Creative Web Developer</h2>
+
+        <p>
+          I create beautiful, modern and responsive websites
+          that help businesses grow and stand out online.
+        </p>
+
+        <a href="#projects" class="btn">Explore My Work</a>
+      </div>
+
+      <img
+        class="hero-img"
+        src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=700"
+        alt="Portfolio profile portrait">
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title">About <span>Me</span></h2>
+      <p class="section-desc">A little introduction about myself</p>
+
+      <div class="about-content">
+        <p>
+          I'm a passionate web developer who loves turning
+          creative ideas into functional digital experiences.
+          I specialize in building clean, user-friendly and
+          responsive websites using modern technologies.
+        </p>
+
+        <p>
+          My goal is to combine creativity and technology
+          to create websites that make a difference.
+        </p>
+
+        <div class="stats">
+          <div class="stat">
+            <h3>15+</h3>
+            <p>Projects Completed</p>
+          </div>
+
+          <div class="stat">
+            <h3>3+</h3>
+            <p>Years Experience</p>
+          </div>
+
+          <div class="stat">
+            <h3>10+</h3>
+            <p>Happy Clients</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section class="skills" id="skills">
+    <div class="container">
+      <h2 class="section-title">My <span>Skills</span></h2>
+      <p class="section-desc">Technologies I work with</p>
+
+      <div class="skill-list">
+        <div class="skill">HTML5</div>
+        <div class="skill">CSS3</div>
+        <div class="skill">JavaScript</div>
+        <div class="skill">Responsive Design</div>
+        <div class="skill">Bootstrap</div>
+        <div class="skill">UI/UX Design</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <div class="container">
+      <h2 class="section-title">My <span>Projects</span></h2>
+      <p class="section-desc">
+        Some of my recent creative work
+      </p>
+
+      <div class="project-grid">
+
+        <div class="project-card">
+          <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=700"
+            alt="E-commerce website">
+          <div class="project-info">
+            <h3>E-Commerce Website</h3>
+            <p>A modern online shopping experience
+              with a clean user interface.</p>
+            <a href="#contact">View Project →</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=700"
+            alt="Dashboard project">
+          <div class="project-info">
+            <h3>Analytics Dashboard</h3>
+            <p>A responsive dashboard for visualizing
+              business data.</p>
+            <a href="#contact">View Project →</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=700"
+            alt="Portfolio website">
+          <div class="project-info">
+            <h3>Business Portfolio</h3>
+            <p>A professional website for a creative
+              business brand.</p>
+            <a href="#contact">View Project →</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <h2 class="section-title">Contact <span>Me</span></h2>
+      <p class="section-desc">
+        Let's discuss your next project
+      </p>
+
+      <form class="contact-form" id="contactForm">
+        <input type="text" id="name"
+          placeholder="Your Name" required>
+
+        <input type="email" id="email"
+          placeholder="Your Email" required>
+
+        <input type="text" id="subject"
+          placeholder="Subject" required>
+
+        <textarea id="message"
+          placeholder="Your Message" required></textarea>
+
+        <button type="submit" class="btn">
+          Send Message
+        </button>
+
+        <p id="formMessage" role="status"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>
+        © <span id="year"></span> Alex Morgan.
+        All Rights Reserved.
+      </p>
+      <p>Designed with 💚 using HTML, CSS & JavaScript</p>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile navigation
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+
+    menuBtn.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("active");
+      menuBtn.setAttribute("aria-expanded", isOpen);
+      menuBtn.textContent = isOpen ? "✕" : "☰";
+    });
+
+    // Close menu after clicking a link
+    document.querySelectorAll(".nav-links a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("active");
+        menuBtn.textContent = "☰";
+        menuBtn.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    // Dynamic copyright year
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    // Contact form demonstration
+    document.getElementById("contactForm")
+      .addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        const name = document.getElementById("name").value;
+
+        document.getElementById("formMessage").textContent =
+          `Thank you, ${name}! Your message is ready to be connected.`;
+
+        this.reset();
+      });
+  </script>
+
+</body>
+</html>
